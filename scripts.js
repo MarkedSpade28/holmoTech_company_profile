@@ -6,6 +6,23 @@ document.querySelectorAll('.faq-item h3').forEach(item => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll('section');
+    
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+});
+
+
 //Change font color on white background
 document.addEventListener('scroll', function() {
     const aboutSection = document.getElementById('about');
