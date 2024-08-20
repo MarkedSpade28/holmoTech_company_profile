@@ -20,10 +20,12 @@ document.addEventListener("DOMContentLoaded", function() {
     sections.forEach(section => {
         observer.observe(section);
     });
+
+    // Trigger scroll event on load to handle color change immediately
+    document.dispatchEvent(new Event('scroll'));
 });
 
-
-//Change font color on white background
+// Change font color on white background
 document.addEventListener('scroll', function() {
     const aboutSection = document.getElementById('about');
     const faqSection = document.getElementById('faq');
@@ -39,12 +41,17 @@ document.addEventListener('scroll', function() {
         );
     }
 
-    // Check if either the about or faq section is in the viewport
-    if (isInViewport(aboutSection) || isInViewport(faqSection)) {
+    // Check if the about section is in the viewport
+    if (isInViewport(aboutSection)) {
         aboutSection.style.color = 'black';
-        faqSection.style.color = 'black';
     } else {
         aboutSection.style.color = '#333';
+    }
+
+    // Check if the FAQ section is in the viewport
+    if (isInViewport(faqSection)) {
+        faqSection.style.color = 'black';
+    } else {
         faqSection.style.color = '#333';
     }
 });

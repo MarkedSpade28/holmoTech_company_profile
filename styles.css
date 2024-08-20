@@ -1,29 +1,30 @@
-/* Hero Section */
-
-*{
+/* General Reset */
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
 }
 
-.container{
+/* Container and Hero Section */
+.container {
     width: 100%;
     height: 100vh;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
-.content{
+.content {
     text-align: center;
     opacity: 0;
     animation: fadeIn 1s forwards;
     animation-delay: 0.5s;
 }
 
-.content h6{
+.content h6 {
     font-size: 25px;
     color: #fff;
     margin-bottom: 10px;
@@ -33,7 +34,7 @@
     animation-delay: 1s;
 }
 
-.content h4{
+.content h4 {
     font-size: 50px;
     color: #fff;
     margin-bottom: 50px;
@@ -43,7 +44,7 @@
     animation-delay: 1.5s;
 }
 
-.content a{
+.content a {
     font-size: 23px;
     color: #fff;
     text-decoration: none;
@@ -56,12 +57,12 @@
     transition: 0.3s;
 }
 
-.content a:hover{
+.content a:hover {
     background-color: #fff;
     color: #000;
 }
 
-.background-clip{
+.background-clip {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -69,14 +70,14 @@
 }
 
 @media (min-aspect-ratio:16/9) {
-    .background-clip{
+    .background-clip {
         width: 100%;
         height: auto;
     }
 }
 
 @media (max-aspect-ratio:16/9) {
-    .background-clip{
+    .background-clip {
         width: auto;
         height: 100%;
     }
@@ -113,22 +114,7 @@
     }
 }
 
-
-
-
-
-
-
-
-/* .container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-} */
-
-/* Navbar styles */
+/* Navbar */
 .navbar {
     position: absolute;
     top: 0;
@@ -164,41 +150,25 @@
     width: 65px;
 }
 
-/* Navbar Scrolling */
-.navbar ul li a {
-    cursor: pointer;
-}
-
 .navbar ul li a:hover {
     color: #525353;
 }
 
-/* Ensure image fills entire screen
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: -1;
-} */
-
+/* Sections */
 section {
     padding: 50px 20px;
     background-color: #f4f4f4;
     color: #333;
 }
 
-/* About Us Section*/
-
+/* About Us Section */
 #about {
     background-color: #ffffff;
     color: #000000;
     padding: 100px 20px;
     text-align: center;
 }
+
 #about h2 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -223,6 +193,7 @@ section {
     align-items: center;
     flex-wrap: wrap;
 }
+
 #mission ul {
     list-style-type: none;
     padding-left: 0;
@@ -303,8 +274,6 @@ section {
     font-weight: 700;
 }
 
-
-
 /* Contact Section */
 #contact {
     background-color: #1e1e1e;
@@ -356,22 +325,6 @@ section {
     transform: rotate(45deg);
 }
 
-
-
-
-#about,  #faq {
-    padding: 100px 20px;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-#mission, #contact, #work {
-    padding: 100px 20px;
-    background: linear-gradient(135deg, #17191c 0%, #3d3f43 100%);
-    color: #fffefe;
-}
-
-
 /* Packages Section */
 .packages-section {
     display: flex;
@@ -422,4 +375,60 @@ section {
     font-weight: 300;
 }
 
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    overflow: hidden;
+}
 
+.footer-text {
+    color: white;
+    font-size: 18px;
+    white-space: nowrap;
+    position: relative;
+}
+
+.footer-text.left {
+    text-align: left;
+    color: rgb(176, 171, 171);
+    animation: scroll-word 3s ease-in-out infinite;
+}
+
+.footer-text.center {
+    text-align: center;
+    color: #ddd;
+    flex-grow: 1;
+    text-align: center;
+    animation: scroll-word 3s ease-in-out infinite;
+}
+
+.footer-text.right {
+    text-align: right;
+}
+
+@keyframes scroll-word {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    75% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
