@@ -1,31 +1,17 @@
 // Toggle FAQ answers
-document.querySelectorAll('.faq-item h3').forEach(item => {
-    item.addEventListener('click', () => {
-        const parent = item.parentElement;
-        parent.classList.toggle('active');
-    });
-});
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
 
-document.addEventListener("DOMContentLoaded", function() {
-    const sections = document.querySelectorAll('section');
-    
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('section-visible');
-            }
+    faqItems.forEach(item => {
+        const header = item.querySelector('h3');
+        header.addEventListener('click', () => {
+            item.classList.toggle('active');
         });
-    }, { threshold: 0.1 });
-
-    sections.forEach(section => {
-        observer.observe(section);
     });
-
-    // Trigger scroll event on load to handle color change immediately
-    document.dispatchEvent(new Event('scroll'));
 });
 
-// Change font color on white background
+
+//Change font color on white background
 document.addEventListener('scroll', function() {
     const aboutSection = document.getElementById('about');
     const faqSection = document.getElementById('faq');
@@ -41,17 +27,12 @@ document.addEventListener('scroll', function() {
         );
     }
 
-    // Check if the about section is in the viewport
-    if (isInViewport(aboutSection)) {
+    // Check if either the about or faq section is in the viewport
+    if (isInViewport(aboutSection) || isInViewport(faqSection)) {
         aboutSection.style.color = 'black';
-    } else {
-        aboutSection.style.color = '#333';
-    }
-
-    // Check if the FAQ section is in the viewport
-    if (isInViewport(faqSection)) {
         faqSection.style.color = 'black';
     } else {
+        aboutSection.style.color = '#333';
         faqSection.style.color = '#333';
     }
 });
