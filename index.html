@@ -6,19 +6,226 @@
     <title>HolmoTech</title>
     <link rel="icon" href="/assets/Holmo_tech_logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <meta name="description" content="HolmoTech provides a wide range of digital and technical services including website design, IT support, and more.">
     <meta name="keywords" content="Technology, IT Support, Website Design, Digital Services, Graphic Design, Digital Solutions">
+    <meta name="robots" content="index, follow">
     <meta property="og:title" content="HolmoTech - Your Vision, Our Technology">
     <meta property="og:description" content="HolmoTech provides a wide range of digital and technical services including website design, IT support, and more.">
-    <meta property="og:image" content="/assets/Holmo_tech_logo.png.png">
+    <meta property="og:image" content="/assets/Holmo_tech_logo.png">
+    <meta property="og:url" content="https://www.holmotech.com">
+    <meta property="og:type" content="website">
+    <style>
+        /* Custom CSS Variables */
+        :root {
+            --primary-button-color: #007BFF;
+            --secondary-button-color: #FF4081;
+            --background-color: #f7fafc;
+            --main-text-color: #333;
+            --gradient-bg: linear-gradient(90deg, #007BFF, #FF4081);
+            --overlay-bg: rgba(0, 0, 0, 0.6);
+        }
+
+        .hover-animate {
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-animate:hover {
+            transform: translateY(-3px);
+            background-color: var(--secondary-button-color);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Enhanced Button Styles */
+        .btn-gradient {
+            background-image: var(--gradient-bg);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #f7fafc;
+            padding: 2rem 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-links a {
+            color: #555;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-button-color);
+        }
+
+        .back-to-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-button-color);
+            color: white;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-button-color);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            font-size: 1.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .mobile-menu ul {
+            flex-direction: column;
+            padding: 1rem 0;
+        }
+
+        .mobile-menu ul li {
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .mobile-menu ul li a {
+            display: block;
+            width: 100%;
+            color: var(--main-text-color);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--primary-button-color);
+        }
+
+        .mobile-menu-open {
+            display: block;
+        }
+
+        /* Service Card Styles */
+        .service-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .service-card .overlay {
+            background: var(--overlay-bg);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover .overlay {
+            opacity: 1;
+        }
+
+        .service-card-content {
+            padding: 2rem;
+        }
+
+        .service-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card-list {
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card-list-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-button-color);
+            color: white;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .service-card-button:hover {
+            background-color: var(--secondary-button-color);
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav class="navbar">
-            <a href="#home" class="logo-link">
-                <img src="/assets/Holmo_tech_logo.png" alt="HolmoTech Logo" class="logo">
+<body class="font-roboto text-gray-800 bg-gray-100 overflow-x-hidden">
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <nav class="container mx-auto flex justify-between items-center p-4">
+            <a href="#home" class="flex items-center">
+                <img src="/assets/Holmo_tech_logo.png" alt="HolmoTech Logo" class="h-10" aria-label="HolmoTech Logo">
             </a>
+            <button class="md:hidden mobile-menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#about" class="text-gray-800 hover:text-blue-500">About Us</a></li>
+                <li><a href="#services" class="text-gray-800 hover:text-blue-500">Our Services</a></li>
+                <li><a href="#faq" class="text-gray-800 hover:text-blue-500">FAQ</a></li>
+                <li><a href="#packages" class="text-gray-800 hover:text-blue-500">Packages</a></li>
+                <li><a href="#contact" class="text-gray-800 hover:text-blue-500">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu">
             <ul>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#services">Our Services</a></li>
@@ -26,176 +233,309 @@
                 <li><a href="#packages">Packages</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
-        </nav>
+        </div>
     </header>
 
     <main>
         <!-- Video Background Section -->
-        <section id="home" class="video-section">
-            <video autoplay loop muted plays-inline class="background-clip">
+        <section id="home" class="relative h-screen bg-cover bg-center" style="background-image: url('/assets/7593783-hd_1920_1080_25fps.mp4');">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
                 <source src="assets/7593783-hd_1920_1080_25fps.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <div class="content">
-                <h6>Your Vision, Our Technology!</h6>
-                <h4>Streamline your digital solutions.</h4>
-                <a href="#about" class="cta-button">Get Started</a>
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-center text-white fade-in">
+                <h1 class="text-lg mb-2">Your Vision, Our Technology!</h1>
+                <h2 class="text-2xl md:text-4xl font-bold mb-4">Streamline your digital solutions.</h2>
+                <a href="#about" class="btn-gradient hover-animate">Get Started</a>
             </div>
         </section>
 
         <!-- About Us Section -->
-        <section id="about" class="section-padding about-section">
-            <h2 class="section-title">Welcome to HolmoTech</h2>
-            <div class="about-grid">
-                <p>HolmoTech is a premier provider of comprehensive solutions tailored to meet your digital, technical, and administrative needs. Our expert team specializes in a wide array of services, including website design, IT support, and advanced troubleshooting. Beyond our core tech services, we also offer electrical wiring, system troubleshooting, legal services, and accountancy support.</p>
-                
-                <article class="about-item">
-                    <img src="/assets/mission-statement.jpg" alt="mission-statement-image">
-                    <h3>Our Mission</h3>
-                    <p>At HolmoTech, we are dedicated to delivering exceptional results with professionalism and expertise. We understand that businesses evolve, and so do we. Our commitment extends beyond our current offerings as we continuously adapt to emerging needs and trends.</p>
-                </article>
-                <article class="about-item">
-                    <h3>Our Values</h3>
-                    <p>Connectivity & Technology Advancement: We represent seamless operations, global reach, and the endless possibilities of innovation.
-                    <p>Interconnected Services & Tech Evolution: We are emblematic of growth and evolution, ensuring our services are always at the forefront of technology.</p>
-                    <p> Precision & Digital Fluency: We signify precision in our work, coding expertise, and a deep understanding of digital solutions.</p>
-                    <p>Security & Resilience: We reflect a commitment to security, protection, and resilience in all our digital offerings.</p>
-                </article>
-                    
+        <section id="about" class="py-20 bg-gradient-to-b from-gray-50 to-gray-200">
+            <div class="container mx-auto text-center">
+                <h2 class="text-5xl font-extrabold mb-12 text-gray-800 fade-in" style="letter-spacing: 1px;">Welcome to HolmoTech</h2>
+                <p class="mb-12 text-lg text-gray-700 max-w-3xl mx-auto fade-in" style="text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1); line-height: 1.75;">
+                    At HolmoTech, we are committed to delivering cutting-edge solutions that align with your business goals. Our team of experts specializes in a diverse range of services designed to meet your digital, technical, and administrative needs. From website design and IT support to advanced troubleshooting, we have you covered. Additionally, we offer services such as electrical wiring, system troubleshooting, legal support, and accountancy services.
+                </p>
+
+                <!-- Our Mission and Values -->
+                <div class="flex flex-wrap justify-center space-y-8 md:space-y-0 md:space-x-8 mt-12">
+                    <!-- Our Mission and Vision Card -->
+                    <div class="w-full md:w-1/2 lg:w-1/3 transition-transform transform hover:scale-105 hover:shadow-2xl fade-in flex flex-col">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden flex-1 p-6 hover:border-2 border-blue-500">
+                            <img src="/assets/mission-statement.jpg" alt="Our Mission" class="w-full h-64 object-cover rounded-t-lg mb-6 transition-transform transform hover:scale-110" aria-label="Our Mission">
+
+                            <h3 class="text-3xl font-bold mb-4 text-gray-800 transition-colors duration-300 hover:text-blue-500">Our Mission</h3>
+                            <p class="text-gray-600 leading-relaxed mb-6">To deliver exceptional results with professionalism and expertise. We continuously adapt to emerging needs and trends to ensure we provide the best solutions for your business.</p>
+
+                            <h3 class="text-3xl font-bold mb-4 text-gray-800 transition-colors duration-300 hover:text-blue-500">Our Vision</h3>
+                            <p class="text-gray-600 leading-relaxed">To be the most trusted partner for businesses seeking innovative digital solutions and transformative growth.</p>
+                        </div>
+                    </div>
+
+                    <!-- Our Values Card without Bullets -->
+                    <div class="w-full md:w-1/2 lg:w-1/3 transition-transform transform hover:scale-105 hover:shadow-2xl fade-in flex flex-col">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden flex-1 p-6 hover:border-2 border-blue-500">
+                            <img src="/assets/our_values.jpg" alt="Our Values" class="w-full h-64 object-cover rounded-t-lg mb-6 transition-transform transform hover:scale-110" aria-label="Our Values">
+                            <h3 class="text-3xl font-bold mb-4 text-gray-800 transition-colors duration-300 hover:text-blue-500">Our Values</h3>
+                            <ul class="list-none pl-0 text-gray-600 space-y-4 leading-relaxed">
+                                <li><strong>Connectivity & Technology Advancement:</strong> Seamless operations and global reach.</li>
+                                <li><strong>Interconnected Services & Tech Evolution:</strong> Continuous growth and evolution.</li>
+                                <li><strong>Precision & Digital Fluency:</strong> Expertise in coding and digital solutions.</li>
+                                <li><strong>Security & Resilience:</strong> Commitment to protection and resilience in all offerings.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Our Objectives Section -->
+                <div class="mt-12">
+                    <h3 class="text-4xl font-bold mb-6 text-gray-800">Our Objectives</h3>
+                    <ul class="list-none pl-0 text-gray-600 space-y-4 leading-relaxed max-w-2xl mx-auto text-left">
+                        <li><strong>Innovative Solutions:</strong> Continually develop cutting-edge technologies to meet evolving business needs.</li>
+                        <li><strong>Customer Success:</strong> Prioritize client satisfaction through personalized support and services.</li>
+                        <li><strong>Sustainable Growth:</strong> Foster growth that is sustainable and beneficial to all stakeholders.</li>
+                        <li><strong>Global Reach:</strong> Expand our services to cater to a global audience.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <!-- Our Services Section -->
-        <section id="services" class="section-padding">
-            <h3 class="section-title">Our Services</h3>
-            <div class="service-grid">
-                <article class="service-item">
-                    <img src="/assets/image_3.jpg" alt="3D Printing Mission">
-                    <h4>Web & IT Services</h4>
-                    <ul>
-                        <li>Building and Maintaining Websites</li><hr>
-                        <li>Technical Support</li><hr>
-                        <li>IT Consulting</li>
-                    </ul>
-                </article>
-                <article class="service-item">
-                    <img src="assets/image_2.jpg" alt="Additional Services">
-                    <h4>Additional Services</h4>
-                    <ul>
-                        <li>Electrical Wiring and System Troubleshooting</li><hr>
-                        <li>Legal Services</li><hr>
-                        <li>Accountancy Services</li>
-                    </ul>
-                </article>
+        <section id="services" class="py-20 bg-gray-100">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 fade-in">Our Services</h2>
+                <div class="flex flex-wrap justify-center">
+                    <!-- Service Card Template -->
+                    <div class="w-full md:w-1/2 lg:w-1/3 p-4 transition-transform transform hover:scale-105 hover:shadow-xl fade-in">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+                            <img src="/assets/software_services.jpg" alt="Web & IT Services" class="w-full h-64 object-cover" aria-label="Web & IT Services">
+                            <div class="p-8 flex-grow flex flex-col justify-between">
+                                <h4 class="text-xl font-bold mb-4 text-gray-800">Web & IT Services</h4>
+                                <p class="text-gray-600 mb-4">Building and Maintaining Websites</p>
+                                <p class="text-gray-600 mb-4">Technical Support</p>
+                                <p class="text-gray-600 mb-4">IT Consulting</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="w-full md:w-1/2 lg:w-1/3 p-4 transition-transform transform hover:scale-105 hover:shadow-xl fade-in">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+                            <img src="/assets/3D_graphic_design.jpg" alt="Graphic Design" class="w-full h-64 object-cover" aria-label="Graphic Design">
+                            <div class="p-8 flex-grow flex flex-col justify-between">
+                                <h4 class="text-xl font-bold mb-4 text-gray-800">Graphic Design</h4>
+                                <p class="text-gray-600 mb-4"><strong>Branding and Identity</strong></p>
+                                <ul class="list-none pl-0 text-gray-600 space-y-2 leading-relaxed">
+                                    <li>Logo Design</li>
+                                    <li>Business Cards</li>
+                                    <li>Branding/Visual Identity</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4 mb-4"><strong>Print Media</strong></p>
+                                <ul class="list-none pl-0 text-gray-600 space-y-2 leading-relaxed">
+                                    <li>Brochures/Flyers</li>
+                                    <li>Packaging Design</li>
+                                    <li>Poster Design</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4 mb-4"><strong>Digital Media</strong></p>
+                                <ul class="list-none pl-0 text-gray-600 space-y-2 leading-relaxed">
+                                    <li>Web Layouts/UI Design</li>
+                                    <li>Social Media Graphics</li>
+                                    <li>Data Visualization</li>
+                                    <li>Infographics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="w-full md:w-1/2 lg:w-1/3 p-4 transition-transform transform hover:scale-105 hover:shadow-xl fade-in">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+                            <img src="/assets/image_2.jpg" alt="Additional Services" class="w-full h-64 object-cover" aria-label="Additional Services">
+                            <div class="p-8 flex-grow flex flex-col justify-between">
+                                <h4 class="text-xl font-bold mb-4 text-gray-800">Additional Services</h4>
+                                <ul class="list-none pl-0 text-gray-600 space-y-2 leading-relaxed">
+                                    <li>Electrical Wiring and System Troubleshooting</li>
+                                    <li>Legal Services</li>
+                                    <li>Accountancy Services</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-
         
-        <!-- Packages Section -->
-        <section id="packages" class="packages-section section-padding">
-            <h3 class="section-title">Most Preffered Packages.</h3>
-            <div class="package-grid">
-                <article class="package-item">
-                    <img src="/assets/background_img.jpg" alt="background-image">
-                    <h3>Basic Package</h3>
-                    <p>Designing Invitation Cards</p>
-                    <p>Social Media Management</p>
-                    <p>Content Writing and Editing
-                    <p>Data Backup and Recovery</p>
-                    <p>Pricing: Reach out for further details and scope.</p>
-                </article>
-            
-                <article class="package-item">
-                    <img src="/assets/bgImage_2_2.jpg" alt="background-image">
-                    <h3>Standard Package</h3>
-                    <p>Building and Maintaining Websites</p>
-                    <p>Graphic Design (Logos, Banners, etc.)</p>
-                    <p>Search Engine Optimization (SEO)</p>
-                    <p>Email Marketing Campaigns</p>
-                    <p>Pricing: Reach out for further details and scope.</p>
-                </article>
-                <article class="package-item">
-                    <img src="/assets/basic_package.jpg" alt="background-image">
-                    <h3>Premium Package</h3>
-                    <p>Custom Application Development</p>
-                    <p>Online Course Creation and Management</p>
-                    <p>Video Editing</p>
-                    <p>IT Consulting</p>
-                    <p>Pricing: Reach out for further details and scope.</p>
-                </article>
 
-                <article class="package-item">
-                    <img src="/assets/image_1.jpg" alt="background-image">
-                    <h3>A la Carte Services</h3>
-                    <p>Virus and Malware Removal</p>
-                    <p>Creating and Managing Online Ads</p>
-                    <p>System Upgrades and Installations</p>
-                    <p>Pricing: Reach out for further details and scope.</p>
-                </article>
+        <!-- Packages Section -->
+        <section id="packages" class="py-20 bg-white">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 fade-in">Most Preferred Packages</h2>
+                <div class="flex flex-wrap justify-around">
+                    <div class="w-full md:w-1/2 lg:w-1/4 mb-8 transition-transform transform hover:scale-105 hover:shadow-xl fade-in">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                            <img src="/assets/brand_identity.jpg" alt="Basic Package" class="w-full h-64 object-cover" aria-label="Basic Package">
+                            <div class="p-8">
+                                <h3 class="text-xl font-bold mb-2">Basic Package</h3>
+                                <p class="text-gray-600 mb-2">Designing Invitation Cards</p>
+                                <p class="text-gray-600 mb-2">Social Media Management</p>
+                                <p class="text-gray-600 mb-2">Content Writing and Editing</p>
+                                <p class="text-gray-600 mb-2">Data Backup and Recovery</p>
+                                <p class="text-gray-600">Pricing: Reach out for further details and scope.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 lg:w-1/4 mb-8 transition-transform transform hover:scale-105 hover:shadow-xl fade-in">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                            <img src="/assets/advanced_data.jpg" alt="Standard Package" class="w-full h-64 object-cover" aria-label="Standard Package">
+                            <div class="p-8">
+                                <h3 class="text-xl font-bold mb-2">Standard Package</h3>
+                                <p class="text-gray-600 mb-2">Building and Maintaining Websites</p>
+                                <p class="text-gray-600 mb-2">Graphic Design (Logos, Banners, etc.)</p>
+                                <p class="text-gray-600 mb-2">Search Engine Optimization (SEO)</p>
+                                <p class="text-gray-600">Email Marketing Campaigns</p>
+                                <p class="text-gray-600">Pricing: Reach out for further details and scope.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 lg:w-1/4 mb-8 transition-transform transform hover:scale-105 hover:shadow-xl fade-in">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                            <img src="/assets/business_plan.jpg" alt="Premium Package" class="w-full h-64 object-cover" aria-label="Premium Package">
+                            <div class="p-8">
+                                <h3 class="text-xl font-bold mb-2">Premium Package</h3>
+                                <p class="text-gray-600 mb-2">Custom Application Development</p>
+                                <p class="text-gray-600 mb-2">Online Course Creation and Management</p>
+                                <p class="text-gray-600 mb-2">Video Editing</p>
+                                <p class="text-gray-600">IT Consulting</p>
+                                <p class="text-gray-600">Pricing: Reach out for further details and scope.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 lg:w-1/4 mb-8 transition-transform transform hover:scale-105 hover:shadow-xl fade-in">
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                            <img src="/assets/goal.jpg" alt="A la Carte Services" class="w-full h-64 object-cover" aria-label="A la Carte Services">
+                            <div class="p-8">
+                                <h3 class="text-xl font-bold mb-2">A la Carte Services</h3>
+                                <p class="text-gray-600 mb-2">Virus and Malware Removal</p>
+                                <p class="text-gray-600 mb-2">Creating and Managing Online Ads</p>
+                                <p class="text-gray-600 mb-2">System Upgrades and Installations</p>
+                                <p class="text-gray-600">Pricing: Reach out for further details and scope.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq" class="section-padding faq-section">
-            <h2 class="faq-question">FREQUENTLY ASKED QUESTIONS.</h2>
-            <div class="faq-item">
-                <h3>How can I get started with HolmoTech? </h3>
-                <p>To start, contact us via phone or email to discuss your needs. We'll provide a detailed proposal and get started on your project.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What is your typical project turnaround time? </h3>
-                <p>Turnaround times vary based on the complexity of the project. We provide estimated timelines during the initial consultation.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What's the typical process for a design project? </h3>
-                <p>Our design process typically involves discovery, planning, design creation, feedback iterations, and finalization. We work closely with you at every step to ensure your vision is realized.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you offer ongoing support? </h3>
-                <p>Yes, we offer ongoing support for most of our services. Details can be included in your service package.</p>
-            </div>
-            <div class="faq-item">
-                <h3>How do you handle data security? </h3>
-                <p>We prioritize data security and use industry-standard practices to protect your information.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Can I customize a service package? </h3>
-                <p>Absolutely! We offer customizable packages to fit your specific needs and budget.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you offer emergency services? </h3>
-                <p>Yes, we offer emergency electrical services. Please call us immediately if you encounter an urgent issue.</p>
+        <section id="faq" class="py-20 bg-gray-100">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 fade-in">Frequently Asked Questions</h2>
+                <div class="space-y-4">
+                    <div class="faq-item bg-white p-6 rounded shadow">
+                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">How can I get started with HolmoTech?<span class="ml-4">+</span></h3>
+                        <p class="mt-4 hidden">To start, contact us via phone or email to discuss your needs. We'll provide a detailed proposal and get started on your project.</p>
+                    </div>
+                    <div class="faq-item bg-white p-6 rounded shadow">
+                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">What is your typical project turnaround time?<span class="ml-4">+</span></h3>
+                        <p class="mt-4 hidden">Turnaround times vary based on the complexity of the project. We provide estimated timelines during the initial consultation.</p>
+                    </div>
+                    <div class="faq-item bg-white p-6 rounded shadow">
+                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">What's the typical process for a design project?<span class="ml-4">+</span></h3>
+                        <p class="mt-4 hidden">Our design process typically involves discovery, planning, design creation, feedback iterations, and finalization. We work closely with you at every step to ensure your vision is realized.</p>
+                    </div>
+                    <div class="faq-item bg-white p-6 rounded shadow">
+                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">Do you offer ongoing support?<span class="ml-4">+</span></h3>
+                        <p class="mt-4 hidden">Yes, we offer ongoing support for most of our services. Details can be included in your service package.</p>
+                    </div>
+                    <div class="faq-item bg-white p-6 rounded shadow">
+                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">How do you handle data security?<span class="ml-4">+</span></h3>
+                        <p class="mt-4 hidden">We prioritize data security and use industry-standard practices to protect your information.</p>
+                    </div>
+                    <div class="faq-item bg-white p-6 rounded shadow">
+                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">Can I customize a service package?<span class="ml-4">+</span></h3>
+                        <p class="mt-4 hidden">Absolutely! We offer customizable packages to fit your specific needs and budget.</p>
+                    </div>
+                    <div class="faq-item bg-white p-6 rounded shadow">
+                        <h3 class="text-xl font-bold cursor-pointer flex justify-between items-center">Do you offer emergency services?<span class="ml-4">+</span></h3>
+                        <p class="mt-4 hidden">Yes, we offer emergency electrical services. Please call us immediately if you encounter an urgent issue.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-<section id="contact">
-    <div class="container">
-        <h2>Get in Touch</h2>
-        <p>Contact us today to discuss your project and how we can help you achieve your goals.</p>
-        <a href="mailto:contact@holmotech.com" class="cta-button">Contact Us</a>
-    </div>
-</section>
+        <section id="contact" class="py-20 bg-white text-center">
+            <div class="container mx-auto fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Get in Touch</h2>
+                <p class="text-lg mb-6">Contact us today to discuss your project and how we can help you achieve your goals.</p>
+                <a href="mailto:contact@holmotech.com" class="btn-gradient hover-animate">Contact Us</a>
+            </div>
+        </section>
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-logo">
-        <a href="#" class="logo-link">
-            <img src="/assets/Holmo_tech_logo.png" alt="Holmotech Logo">
-        </a>
-    </div>
-    <div class="footer-text left">
-        <p>&copy; 2024 Holmotech. All rights reserved.</p>
-    </div>
-    <div class="footer-text right">
-        <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-</footer>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+                <div class="footer-logo mb-4 md:mb-0">
+                    <a href="#" class="flex items-center">
+                        <img src="/assets/Holmo_tech_logo.png" alt="HolmoTech Logo" class="h-10" aria-label="HolmoTech Logo">
+                    </a>
+                </div>
+                <div class="text-gray-600 text-center md:text-left">&copy; 2024 HolmoTech. All rights reserved.</div>
+                <ul class="footer-links flex space-x-4 mt-4 md:mt-0">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </footer>
 
-    <script src="scripts.js"></script>
-</body>
+        <!-- Back to Top Button -->
+        <div class="back-to-top" id="backToTop">
+            ↑
+        </div>
+
+        <script src="scripts.js" defer></script>
+        <script>
+            // Scroll to top functionality
+            const backToTopButton = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('mobile-menu-open');
+            });
+
+            // Fade-in elements on scroll
+            const fadeInElements = document.querySelectorAll('.fade-in');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            fadeInElements.forEach(element => {
+                observer.observe(element);
+            });
+        </script>
+    </body>
 </html>
